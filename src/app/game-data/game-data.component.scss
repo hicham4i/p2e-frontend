@@ -1,0 +1,66 @@
+.case {
+    background-color: #212529;
+    border: none;
+    border-left: 5px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.case * {
+    font-size: 1.2em;
+    margin: 0;
+}
+.case :last-child {
+    color: #fff;
+    margin-top: 10px;
+}
+.all-icons .font-icon-detail {
+    min-height: 100px;
+    max-height: 150px;
+    padding: 0;
+}
+.border-unique {
+    border-color: #9c14ff !important;
+}
+.text-unique {
+    color: #9c14ff !important;
+}
+.table-dark > th{
+    background-color: transparent;
+}
+.btn-holder button,
+.btn-holder a {
+  display: inline-block;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  color: #000;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+.btn-holder button:hover,
+.btn-holder a:hover {
+  background-color: #7ad03a;
+}
+.btn-holder button:active,
+.btn-holder button.active {
+  background-color: #7ad03a !important;
+}
+.fa-star {
+    color: gold;
+    font-size: 20px;
+}
+.table * {
+    text-align: center;
+}
+.table th {
+    font-size: 15px;
+    font-weight: bold;
+}
+.btn-popup {
+    height: 17px;
+    padding: 0;
+    width: 100%;
+}

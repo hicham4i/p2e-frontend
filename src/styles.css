@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.border-unique {
+    border-color: #9c14ff !important;
+}
+.text-unique {
+    color: #9c14ff !important;
+}

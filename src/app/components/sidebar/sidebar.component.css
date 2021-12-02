@@ -1,0 +1,11 @@
+::ng-deep.sidebar:after {
+    background: #292929 !important;
+}
+::ng-deep .nav li.active > a, ::ng-deep .nav li.active > a > i {
+    color: #292929 !important;
+}
+.logo {
+    width: 30px;
+    margin-right: 15px;
+    padding: 0;
+}

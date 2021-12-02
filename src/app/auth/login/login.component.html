@@ -1,0 +1,150 @@
+<div class="container" style="background-image: linear-gradient(-45deg, #ff3636 0%, #d5a21b 100%);max-width: 100%;">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form *ngIf="selectedForm === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+        <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user" style="padding: 0 10px 0 5px;"></i>
+              <input type="text" type="email" formControlName="email" required email placeholder="Email" />
+            </div>
+            <div class="input-group input-field mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" style="padding: 10px 5px 10px 10px;">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+              <input type="password" placeholder="Password" [type]="hide ? 'password' : 'text'"
+              name="password" formControlName="password" required />
+              <div class="input-group-append  cursor-pointer">
+                <span class="input-group-text">
+                  <i class="fas" [ngClass]="hide ? 'fa-eye-slash': 'fa-eye'" (mousedown)="hide = false" (mouseup)="hide = true"></i>
+                </span>
+              </div>
+            </div>
+            <div *ngIf="messageError" class="d-flex flex-column">
+              <span *ngIf="loginForm.controls.email.errors?.email" style="width: max-content;">Please enter a valid email.</span>
+              <span *ngIf="pwd.errors?.required">The password is required</span>
+              <span *ngIf="!pwd.errors?.required">The password must contain : </span>
+              <span *ngIf="pwd.errors?.minlength">more than 6 characters.</span>
+              <span *ngIf="!pwd.errors?.minlength && pwd.errors?.number">at least one numeric digit</span>
+              <span
+                *ngIf="!pwd.errors?.minlength && !pwd.errors?.lower && !pwd.errors?.upper && !pwd.errors?.number && pwd.errors?.char">
+                at least one special character</span>
+              <span *ngIf="!pwd.errors?.minlength && !pwd.errors?.lower && pwd.errors?.upper">at least one
+                uppercase letter</span>
+              <span *ngIf="!pwd.errors?.minlength && pwd.errors?.lower">at least one lowercase letter</span>
+              <span *ngIf="messageError">
+                <i class="fas fa-exclamation-circle mr-1"></i>
+                {{messageError}}
+              </span>
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+      </form>
+      <form *ngIf="selectedForm === 'signup'" [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-up-form">
+        <h2 class="title">Sign up</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Full Name" formControlName="fullName"
+          required/>
+        </div>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" formControlName="email"
+          required email />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password"  placeholder="Password" [type]="hide ? 'password' : 'text'"
+          name="password" formControlName="password" required>
+          <i class="fas cursor-pointer" [ngClass]="hide ? 'fa-eye-slash': 'fa-eye'" (mousedown)="hide = false" (mouseup)="hide = true"></i>
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" name="pwdCheck"
+          formControlName="pwdCheck" required>
+        </div>
+        <div *ngIf="messageError" class="d-flex flex-column">
+          <span *ngIf="signUpForm.controls.fullName.errors?.required">Please enter your name.</span>
+          <span *ngIf="signUpForm.controls.email.errors?.email" style="width: max-content;">Please enter a valid email.</span>
+          <span *ngIf="pwdSignUp.errors?.required">The password is required</span>
+          <span *ngIf="!pwdSignUp.errors?.required">The password must contain : </span>
+          <span *ngIf="pwdSignUp.errors?.minlength">more than 6 characters.</span>
+          <span *ngIf="!pwdSignUp.errors?.minlength && pwdSignUp.errors?.number">at least one numeric digit</span>
+          <span
+            *ngIf="!pwdSignUp.errors?.minlength && !pwdSignUp.errors?.lower && !pwdSignUp.errors?.upper && !pwdSignUp.errors?.number && pwdSignUp.errors?.char">
+            at least one special character</span>
+          <span *ngIf="!pwdSignUp.errors?.minlength && !pwdSignUp.errors?.lower && pwdSignUp.errors?.upper">at least one
+            uppercase letter</span>
+          <span *ngIf="!pwdSignUp.errors?.minlength && pwdSignUp.errors?.lower">at least one lowercase letter</span>
+          <span *ngIf="signUpForm.controls.pwdCheck.errors?.noMatch">
+            Passwords do not match
+         </span>
+        </div>
+        <button class="btn" type="submit" [disabled]="loading" [ngClass]="{disabled : loading}">
+            <span *ngIf="loading" class="spinner-border mr-2 spinner-border-sm" role="status"
+              aria-hidden="true"></span>
+            sign up
+        </button>
+        <p class="social-text">Or Sign up with social platforms</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>New here ?</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+          ex ratione. Aliquid!
+        </p>
+        <button class="btn transparent" #switchToSignUp (click)="switchTo(switchToSignUp)">
+          Sign up
+        </button>
+      </div>
+      <!-- <img src="/assets/img/undraw_building_blocks_n0nc.svg" class="image" alt="" /> -->
+    </div>
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>One of us ?</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          laboriosam ad deleniti.
+        </p>
+        <button class="btn transparent" #switchToSignIn (click)="switchTo(switchToSignIn)">
+          Sign in
+        </button>
+      </div>
+      <!-- <img src="/assets/img/undraw_under_construction_46pa.svg" class="image" alt="" /> -->
+    </div>
+  </div>
+</div>
