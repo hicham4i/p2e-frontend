@@ -42,7 +42,7 @@
             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
               <div class="font-icon-detail border-danger case">
                 <p class="font-weight-bold text-danger text-uppercase mb-1"> Balance ($) </p>
-                <p class="font-weight-bold text-uppercase mb-1"> {{dailyStats.length && currentGame && currentGame.tokenValue ? toFixed(globals.balance * currentGame.tokenValue, currentGame.tokenValue.countDecimals()) : 0}} </p>
+                <p class="font-weight-bold text-uppercase mb-1"> {{dailyStats.length && currentGame && currentGame.tokenValue ? toFixed(globals.balance * currentGame.tokenValue, 2) : 0}} </p>
               </div>
             </div>
             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
@@ -131,7 +131,7 @@
           <div [style.width]="popupEntry.type !== 'Token' ? '' : '100%'">
             <label for="date">Entry Value</label>
             <div class="input-group m-0">
-              <input [disabled]="!popupEntry.date || (popupEntry.linked && popupEntry.main === 'balance')" type="number" [(ngModel)]="popupEntry.entry" id="entry" class="form-control" placeholder="entry" name="entry" ngbDatepicker #dp="ngbDatepicker" (input)="popupEntry.linked ? updatePopupBalance($event) : true">
+              <input [disabled]="!popupEntry.date || (popupEntry.linked && popupEntry.main === 'balance')" type="number" [(ngModel)]="popupEntry.entry" id="entry" class="form-control" placeholder="entry" name="entry"  (input)="popupEntry.linked ? updatePopupBalance($event) : true">
             </div>
           </div>
           <div  *ngIf="popupEntry.type !== 'Token'" class=" mx-1">
@@ -145,7 +145,7 @@
           <div *ngIf="popupEntry.type !== 'Token'">
             <label for="date">Current Balance</label>
             <div class="input-group m-0">
-              <input [disabled]="!popupEntry.date || (popupEntry.linked && popupEntry.main === 'entry')"  [(ngModel)]="popupEntry.balance" type="number" id="balance" class="form-control" placeholder="current balance" name="balance">
+              <input [disabled]="!popupEntry.date || (popupEntry.linked && popupEntry.main === 'entry')"  [(ngModel)]="popupEntry.balance" type="number" id="balance" class="form-control" placeholder="current balance" name="balance" (input)="popupEntry.linked ? updatePopupEntry($event) : true">
             </div>
           </div>
         </div>

@@ -138,6 +138,22 @@ export class GameDataComponent implements OnInit {
         break;
     }
   }
+  updatePopupEntry(event: any) {
+    const value = event.target.value;
+    switch (this.popupEntry.type) {
+      case 'Earn':
+        this.popupEntry.entry =  this.toFixed(+value - this.balance, this.currentGame.tokenValue.countDecimals());
+        break;
+      case 'Claim':
+        this.popupEntry.entry =  +value;
+        break;
+      case 'Fees':
+        this.popupEntry.entry =  this.toFixed(this.balance - +value, this.currentGame.tokenValue.countDecimals());
+        break;
+      default:
+        break;
+    }
+  }
   getGameID(name: string) {
     return this.userService.games.find(g => g.name.toLowerCase().replace(/ /g, '') === name);
   }
@@ -195,7 +211,6 @@ export class GameDataComponent implements OnInit {
     const datePickerDate = new Date(Date.UTC(date.year, date.month - 1, date.day,0,0,0)).toLocaleDateString('es-CL');
     const today = new Date().toLocaleDateString('es-CL');
     const entry = this.dailyStats.find(e => e.date === datePickerDate);
-    console.log('🚀 ~ file: game-data.component.ts ~ line 197 ~ GameDataComponent ~ updateBalance ~ entry', datePickerDate === today, entry);
     this.popupEntry.balance = this.balance = datePickerDate === today ? this.globals.balance : entry ? entry.earningFromLastClaim : 0;
   }
   toFixed(value, set) {
