@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-app.use(express.static(__dirname + '/dist/p2e-dash'));
+app.use(express.static(__dirname + '/dist/assets'));
 app.get('/*', function(req,res) {
 res.sendFile(path.join(__dirname+
-'/dist/p2e-dash/index.html'));});
+'/dist/index.html'));});
 app.listen(process.env.PORT || 8080);
