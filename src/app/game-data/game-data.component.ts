@@ -90,7 +90,11 @@ export class GameDataComponent implements OnInit {
   balance = 0;
   isSaving = false;
   globals = {
-    balance: 0
+    balance: 0,
+    claimed: {
+      token: 0,
+      usd: 0
+    }
   }
   ngOnInit() {
     this.setmainChart([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -101,6 +105,8 @@ export class GameDataComponent implements OnInit {
     .subscribe(
       res => {
         this.entries = res;
+        console.log('🚀 ~ file: game-data.component.ts ~ line 104 ~ GameDataComponent ~ ngOnInit ~ this.entries', this.entries);
+        this.globals.claimed = this.getClaimed();
       },
       err => {
         console.log('🚀 ~ file: game-data.component.ts ~ line 80 ~ GameDataComponent ~ this.router.events.subscribe ~ err', err);
@@ -137,6 +143,13 @@ export class GameDataComponent implements OnInit {
       default:
         break;
     }
+  }
+  getClaimed() {
+    return this.entries.filter(e => e.type === 'Claim').reduce((previous, current) => {
+      previous.token += current.entryValue;
+      previous.usd += (current.entryValue * current.tokenValue);
+      return previous;
+    }, {token:0 , usd: 0});
   }
   updatePopupEntry(event: any) {
     const value = event.target.value;

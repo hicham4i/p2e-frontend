@@ -23,19 +23,19 @@
             </div>
             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
               <div class="font-icon-detail border-info case">
-                <p class="font-weight-bold text-info text-uppercase mb-1"> TOTAL </p>
-                <p class="font-weight-bold text-uppercase mb-1"> TOTAL </p>
+                <p class="font-weight-bold text-info text-uppercase mb-1">CLAIMED ({{currentGame ? currentGame.token : 'TOKEN'}})</p>
+                <p class="font-weight-bold text-uppercase mb-1">{{globals.claimed.token}}</p>
               </div>
             </div>
             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
               <div class="font-icon-detail border-success case">
-                <p class="font-weight-bold text-success text-uppercase mb-1"> TOTAL </p>
-                <p class="font-weight-bold text-uppercase mb-1"> TOTAL </p>
+                <p class="font-weight-bold text-success text-uppercase mb-1"> CLAIMED ($)</p>
+                <p class="font-weight-bold text-uppercase mb-1"> {{toFixed(globals.claimed.usd, 2)}}</p>
               </div>
             </div>
             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
               <div class="font-icon-detail border-primary case">
-                <p class="font-weight-bold text-primary text-uppercase mb-1"> Balance </p>
+                <p class="font-weight-bold text-primary text-uppercase mb-1"> Balance ({{currentGame ? currentGame.token : 'TOKEN'}})</p>
                 <p class="font-weight-bold text-uppercase mb-1"> {{dailyStats.length ? globals.balance : 0}} </p>
               </div>
             </div>
@@ -65,7 +65,7 @@
             <tr class="">
               <th class="collapsing center aligned">Date</th>
               <th class="center aligned">Balance</th>
-              <th class="collapsing center aligned">Daily Earning ({{currentGame.token}})</th>
+              <th class="collapsing center aligned">Daily Earning ({{currentGame ? currentGame.token : ''}})</th>
               <th class="collapsing center aligned">Daily Earning ($)</th>
               <th class="collapsing center aligned">Special Earning</th>
             </tr>
