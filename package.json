@@ -4,13 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "heroku-postbuild": "ng build — prod",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
+  "engines": { "node": "16.13.0", "npm": "8.1.3"},
   "private": true,
   "dependencies": {
     "@angular/animations": "11.0.5",
@@ -46,12 +48,13 @@
     "rxjs": "6.6.3",
     "tslib": "^2.0.3",
     "web-animations-js": "2.3.2",
-    "zone.js": "0.11.3"
+    "zone.js": "0.11.3",
+    "@angular/cli": "11.0.4",
+    "@angular/compiler-cli": "11.0.5",
+    "typescript": "4.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.4",
-    "@angular/cli": "11.0.4",
-    "@angular/compiler-cli": "11.0.5",
     "@angular/language-service": "11.0.5",
     "@types/bootstrap": "5.0.1",
     "@types/chartist": "0.11.0",
@@ -69,7 +72,6 @@
     "karma-jasmine": "4.0.1",
     "protractor": "7.0.0",
     "ts-node": "9.1.1",
-    "tslint": "6.1.3",
-    "typescript": "4.0.3"
+    "tslint": "6.1.3"
   }
 }
